@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>   
+    <!-- Configuração de caracteres e responsividade -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    
+    <style>
+        /* Importação da fonte personalizada */
+        @font-face {
+            font-family: 'Xilosa';
+            src: url('fonts/Xilosa.woff2') format('woff2'),
+                 url('fonts/Xilosa.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* Cor de fundo da página */
+        body {
+            background-color: #EBE2B9;
+        }
+
+        /* Container geral da página */
+        .elements {
+            width: 315px;
+            margin: 0 auto;
+        }
+
+        /* Caixa preta principal */
+        .rect {    
+            background-color: #000000;
+            display: flex;
+            flex-wrap: wrap;
+            width: 315px;
+            border-radius: 8px;
+            padding-bottom: 15px;
+            margin-top: 10px;
+        }
+
+        /* Centralização de imagens */
+        .image {
+            display: flex;
+        }
+
+        /* Título principal */
+        h1 {
+            font-family: "Xilosa";
+            color: #EBE2B9; 
+            text-align: center;
+            font-size: 32px;
+            line-height: 22px;
+            width: 298px;
+            margin: 15px auto 5px auto;
+        }
+
+        /* Títulos dos campos */
+        h2 {
+            font-family: "Xilosa";
+            color: #EBE2B9;
+            font-size: 24px;
+            padding-left: 9px;
+            margin-top: 19px;
+            margin-bottom: 16px;
+        } 
+
+        /* Texto comum */
+        p {
+            font-family: "Xilosa";
+            color: #000000;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        /* Texto em destaque (link) */
+        .destaque {
+            color: #053813;
+        }
+
+        /* Botão Enviar */
+        .button2 {
+            font-family: "Xilosa";
+            color: #EBE2B9;
+            background-color: #053813;
+            box-shadow: 0 4px 0 0 #20413c;
+            border-radius: 19px;
+            font-size: 20px;
+            margin-left: 46px;
+            margin-top: 24px;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Botão Limpar */
+        .button3 {
+            font-family: "Xilosa";
+            color: #EBE2B9;
+            background-color: #843431;
+            box-shadow: 0 4px 0 0 #592321;
+            border-radius: 19px;
+            font-size: 20px;
+            margin-left: 46px;
+            margin-top: 24px;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Estilo dos inputs */
+        .input-containter input{
+            font-family: "Xilosa";
+            font-size: 18px;
+            width: 230px;
+            height: 40px;
+            padding: 0 15px;
+            background: none;
+            outline: none;
+            border: none;
+        }
+
+        /* Cor do texto placeholder */
+        input::placeholder {
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        /* Fundo gráfico dos inputs */
+        .container-background{
+            background: url('assets/Asset_Textbox.svg') no-repeat;
+            width: 298px;
+            height: 40px;
+            margin-left: 9px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="elements">
+
+    <!-- Logo -->
+    <div class="image">
+        <img src="assets/Mandacaru_Logo.png"
+             style="width:196px;height:153px;margin:auto;">
+    </div>
+
+    <!-- Caixa principal do formulário -->
+    <div class="rect">
+        <h1>CADASTRO<br>DE JOGADOR</h1>
+
+        <!-- Campo Nome -->
+        <h2>Nome</h2>
+        <div class="container-background input-containter">
+            <input id="nome" oninput="verNome()" placeholder="digite seu nome">
+        </div>
+
+        <!-- Campo Email -->
+        <h2>E-mail</h2>
+        <div class="container-background input-containter">
+            <input id="email" oninput="verEmail()" placeholder="ex. seuemail@mail.com">
+        </div>
+
+        <!-- Campo Senha -->
+        <h2>Senha</h2>
+        <div class="container-background input-containter">
+            <input id="senha" type="password" oninput="verSenha()" placeholder="digite sua senha">
+        </div>
+
+        <!-- Confirmação da Senha -->
+        <h2>Confirmar Senha</h2>
+        <div class="container-background input-containter">
+            <input id="confirmarSenha" type="password" oninput="verConfirmarSenha()" placeholder="confirme sua senha">
+        </div>
+
+        <!-- Campo CEP -->
+        <h2>CEP</h2>
+        <div class="container-background input-containter">
+            <input id="cep" oninput="verCep()" placeholder="digite seu CEP">
+        </div>
+
+        <!-- Endereço preenchido automaticamente -->
+        <h2>Endereço</h2>
+        <div class="container-background input-containter">
+            <input id="endereco" readonly>
+        </div>
+
+        <!-- Número do endereço -->
+        <h2>Número</h2>
+        <div class="container-background input-containter">
+            <input id="numero" oninput="verNumero()" placeholder="número ou SN">
+        </div>
+
+        <!-- Estado preenchido automaticamente -->
+        <h2>Estado</h2>
+        <div class="container-background input-containter">
+            <input id="estado" readonly>
+        </div>
+
+        <!-- Cidade preenchida automaticamente -->
+        <h2>Cidade</h2>
+        <div class="container-background input-containter">
+            <input id="cidade" readonly>
+        </div>
+
+        <!-- Botões -->
+        <button class="button2" onclick="cadastrar()">Enviar</button>
+        <button class="button3" onclick="limpar()">Limpar</button>
+    </div>
+
+    <!-- Mensagem de retorno -->
+    <p id="resultado"></p>
+
+    <!-- Link para login -->
+    <p>Já possui uma conta?
+        <a href="Cadastrados.html" class="destaque">Entrar</a>
+    </p>
+</div>
+
+<script>
+    /* Variáveis de controle de validação */
+    let nomeValido, emailValido, senhaValida, confirmarSenhaValido, cepValido, numeroValido;
+
+    /* Altera a cor do texto conforme validade */
+    function escolherCor(el, ok) {
+        el.style.color = ok === true ? "#053813" :
+                         ok === false ? "#843431" :
+                         "#000000";
+    }
+
+    /* Validação do nome */
+    function verNome() {
+        nomeValido = nome.value.length >= 2 && nome.value.length <= 50;
+        escolherCor(nome, nomeValido);
+    }
+
+    /* Validação do e-mail */
+    function verEmail() {
+        emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value);
+        escolherCor(email, emailValido);
+    }
+
+    /* Validação da senha */
+    function verSenha() {
+        const v = senha.value;
+        senhaValida =
+            v.length >= 10 &&
+            /[A-Za-z]/.test(v) &&
+            /\d/.test(v) &&
+            /[*#;]/.test(v) &&
+            !/[^A-Za-z0-9*#;]/.test(v);
+        escolherCor(senha, senhaValida);
+    }
+
+    /* Confirmação da senha */
+    function verConfirmarSenha() {
+        confirmarSenhaValido = confirmarSenha.value === senha.value && confirmarSenha.value !== "";
+        escolherCor(confirmarSenha, confirmarSenhaValido);
+    }
+
+    /* Consulta do CEP usando ViaCEP */
+    function verCep() {
+        const c = cep.value.replace(/\D/g, '');
+        if (c.length !== 8) return;
+
+        fetch(`https://viacep.com.br/ws/${c}/json/`)
+            .then(r => r.json())
+            .then(d => {
+                if (d.erro) return;
+                endereco.value = d.logradouro;
+                cidade.value = d.localidade;
+                estado.value = d.uf;
+                cepValido = true;
+                escolherCor(cep, true);
+            });
+    }
+
+    /* Validação do número do endereço */
+    function verNumero() {
+        const v = numero.value.toUpperCase();
+        numeroValido = v === "SN" || /^\d+$/.test(v);
+        escolherCor(numero, numeroValido);
+    }
+
+    /* Envio final do cadastro */
+    function cadastrar() {
+        if (nomeValido && emailValido && senhaValida && confirmarSenhaValido && cepValido && numeroValido) {
+            resultado.innerText = "Cadastro realizado com sucesso!";
+        } else {
+            alert("Verifique os campos.");
+        }
+    }
+
+    /* Limpa todos os campos */
+    function limpar() {
+        document.querySelectorAll("input").forEach(i => {
+            i.value = "";
+            i.style.color = "#000000";
+        });
+        resultado.innerText = "";
+    }
+</script>
+
+</body>
+</html>
